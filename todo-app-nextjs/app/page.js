@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Page = () => {
   const [Title, setTitle] = useState("");
@@ -35,6 +37,20 @@ const Page = () => {
     let copytask = [...mainTask];
     copytask.splice(i, 1);
     setMainTask(copytask);
+  }
+
+  const notify = () => {
+    toast('🦄 Wow so easy!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+      });
   }
 
   let renderTask = <h2 className="text-gray-500">No tasks assigned</h2>
@@ -80,9 +96,10 @@ const Page = () => {
           value={Desc}
           onChange={(e) => setDesc(e.target.value)}
         />
-        <button className='text-white rounded-md bg-fuchsia-600 h-12 w-36 mt-4 hover:bg-fuchsia-700'>
+        <button onClick={notify} className='text-white rounded-md bg-fuchsia-600 h-12 w-36 mt-4 hover:bg-fuchsia-700'>
           {editIndex !== null ? 'Update Task' : 'Add Task'}
         </button>
+        <ToastContainer />
       </form>
       <hr className="mt-8" />
       <div className='p-8'>
