@@ -39,20 +39,6 @@ const Page = () => {
     setMainTask(copytask);
   }
 
-  const notify = () => {
-    toast('🦄 Wow so easy!', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-      transition: Bounce,
-      });
-  }
-
   let renderTask = <h2 className="text-gray-500">No tasks assigned</h2>
   if (mainTask.length > 0) {
     renderTask = mainTask.map((t, i) => (
@@ -96,7 +82,7 @@ const Page = () => {
           value={Desc}
           onChange={(e) => setDesc(e.target.value)}
         />
-        <button onClick={notify} className='text-white rounded-md bg-fuchsia-600 h-12 w-36 mt-4 hover:bg-fuchsia-700'>
+        <button className='text-white rounded-md bg-fuchsia-600 h-12 w-36 mt-4 hover:bg-fuchsia-700'>
           {editIndex !== null ? 'Update Task' : 'Add Task'}
         </button>
         <ToastContainer />
