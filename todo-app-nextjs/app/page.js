@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Page = () => {
@@ -39,6 +39,20 @@ const Page = () => {
     setMainTask(copytask);
   }
 
+  const notify = () => {
+    toast.success('Task Added👍', {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+      });
+  }
+
   let renderTask = <h2 className="text-gray-500">No tasks assigned</h2>
   if (mainTask.length > 0) {
     renderTask = mainTask.map((t, i) => (
@@ -67,22 +81,22 @@ const Page = () => {
 
   return (
     <div className='bg-gray-100 min-h-screen'>
-      <h1 className='bg-gradient-to-r from-fuchsia-600 to-purple-700 text-white p-5 text-5xl font-bold text-center shadow-md'>Task Manager</h1>
+      <h1 className='bg-gradient-to-r from-fuchsia-600 to-purple-700 text-white py-3 px-5 text-3xl font-sans text-center shadow-md'>Task Manager</h1>
       <form onSubmit={submitHandler} className="mt-8 max-w-3xl mx-auto">
         <input
           type='text'
-          className='text-3xl border border-gray-300 rounded-md p-4 w-full focus:outline-none focus:border-blue-500'
+          className='text-xl border border-gray-300 rounded-md p-4 w-full focus:outline-none focus:border-blue-500'
           placeholder='Enter Title here'
           value={Title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <textarea
-          className='text-xl border border-gray-300 rounded-md p-4 mt-4 w-full focus:outline-none focus:border-blue-500'
+          className='text-lg border border-gray-300 rounded-md p-4 mt-4 w-full focus:outline-none focus:border-blue-500'
           placeholder='Enter Description here'
           value={Desc}
           onChange={(e) => setDesc(e.target.value)}
         />
-        <button className='text-white rounded-md bg-fuchsia-600 h-12 w-36 mt-4 hover:bg-fuchsia-700'>
+        <button onClick={notify} className='text-white rounded-md bg-fuchsia-600 h-12 w-36 mt-4 hover:bg-fuchsia-700'>
           {editIndex !== null ? 'Update Task' : 'Add Task'}
         </button>
         <ToastContainer />
