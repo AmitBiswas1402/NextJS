@@ -10,7 +10,8 @@
           "@layer"
         ]
       }
-    ]
+    ],
+    "typescript-config/is-valid": "off"
   },
   "browserslist": [
     "defaults",
